@@ -5,6 +5,12 @@ import { PrismaClient } from '@prisma/client';
 // For env File
 dotenv.config();
 
+function generateRandomApartmentNumber() {
+  const min = 1000;
+  const max = 9999;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const app: Application = express();
 const port = process.env.PORT || 8000;
 const prisma = new PrismaClient();
@@ -26,6 +32,27 @@ app.post('/api/users', async (req: Request, res: Response) => {
     res.json(newUser);
   } catch (error) {
     res.status(500).send('Error creating user');
+  }
+});
+
+app.get('/users/:email', async (req: Request, res: Response) => {
+  const { email } = req.params;
+  try {
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (user) {
+      res.json(user);
+    } else {
+      const newUser = await prisma.user.create({
+        data: {
+          email,
+          apartmentNumber: generateRandomApartmentNumber(),
+        },
+      });
+
+      res.json(newUser);
+    }
+  } catch (error) {
+    res.status(500).send('Error fetching user');
   }
 });
 
