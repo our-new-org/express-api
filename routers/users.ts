@@ -10,23 +10,7 @@ function generateRandomApartmentNumber() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-router.post('/api/users', async (req: Request, res: Response) => {
-  const { email, apartmentNumber } = req.body;
-  try {
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        apartmentNumber,
-      },
-    });
-
-    res.json(newUser);
-  } catch (error) {
-    res.status(500).send('Error creating user');
-  }
-});
-
-router.get('/users/:email', async (req: Request, res: Response) => {
+router.get('/:email', async (req: Request, res: Response) => {
   const { email } = req.params;
   try {
     const user = await prisma.user.findUnique({ where: { email } });
@@ -44,6 +28,22 @@ router.get('/users/:email', async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(500).send('Error fetching user');
+  }
+});
+
+router.post('/users', async (req: Request, res: Response) => {
+  const { email, apartmentNumber } = req.body;
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        apartmentNumber,
+      },
+    });
+
+    res.json(newUser);
+  } catch (error) {
+    res.status(500).send('Error creating user');
   }
 });
 
