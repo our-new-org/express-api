@@ -1,6 +1,7 @@
 import express, { Request, Response, Application } from 'express';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import facilitiesRouter from './routers/facilities';
 
 // For env File
 dotenv.config();
@@ -55,6 +56,8 @@ app.get('/users/:email', async (req: Request, res: Response) => {
     res.status(500).send('Error fetching user');
   }
 });
+
+app.use('/api/facilities', facilitiesRouter);
 
 app.listen(port, () => {
   console.log(`Server is Fire at http://localhost:${port}`);

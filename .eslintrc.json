@@ -11,5 +11,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "unicorn"],
-  "rules": {}
+  "rules": {
+    "object-curly-newline": "off"
+  }
 }
