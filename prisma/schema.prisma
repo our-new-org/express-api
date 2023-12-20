@@ -11,29 +11,34 @@ datasource db {
 }
 
 model User {
+  id              Int       @id @default(autoincrement())
   email           String    @unique
   apartmentNumber Int
   bookings        Booking[]
 }
 
 model Facility {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String?
-  capacity    Int
-  image       String?
-  bookings    Booking[]
+  id           Int       @id @default(autoincrement())
+  name         String
+  description  String?
+  capacity     Int
+  image        String?
+  slotDuration Int
+  openingTime  String
+  closingTime  String
+  bookings     Booking[]
 }
 
 model Booking {
-  bookingId  Int      @id @default(autoincrement())
-  userId     String
+  id         Int      @id @default(autoincrement())
+  userId     Int
   facilityId Int
-  date       DateTime // The date of the booking
-  slotTime   String
-  startTime  Int // The starting hour of the booking (e.g., 14 for 2 PM)
-  duration   Int // Duration of the booking in hours (e.g., 1 for 1 hour)
+  date       Int
+  startTime  Int
+  endTime    Int
+  createdAt  DateTime @default(now()) // Adding createdAt field
+  updatedAt  DateTime @updatedAt
 
-  user     User     @relation(fields: [userId], references: [email])
+  user     User     @relation(fields: [userId], references: [id])
   facility Facility @relation(fields: [facilityId], references: [id])
 }

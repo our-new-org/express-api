@@ -5,6 +5,9 @@ type Facility = {
   description: string;
   capacity: number;
   image: string;
+  slotDuration: number;
+  openingTime: string;
+  closingTime: string;
 };
 
 const getFacilityById = async (facilityId: number) => {

@@ -19,9 +19,24 @@ export const getFacilityByIdController = async (
 };
 
 export const createFacilityController = async (req: Request, res: Response) => {
-  const { name, description, capacity, image, bookings } = req.body;
-  const facility = { name, description, capacity, image, bookings };
-
+  const {
+    name,
+    description,
+    capacity,
+    image,
+    slotDuration,
+    openingTime,
+    closingTime,
+  } = req.body;
+  const facility = {
+    name,
+    description,
+    capacity,
+    image,
+    slotDuration,
+    openingTime,
+    closingTime,
+  };
   try {
     const newFacility = await facilityService.createFacility(facility);
     res.json(newFacility);
