@@ -30,6 +30,7 @@ model Booking {
   userId     String
   facilityId Int
   date       DateTime // The date of the booking
+  slotTime   String
   startTime  Int // The starting hour of the booking (e.g., 14 for 2 PM)
   duration   Int // Duration of the booking in hours (e.g., 1 for 1 hour)
 
