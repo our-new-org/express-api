@@ -16,9 +16,9 @@ model User {
   bookings        Booking[]
 }
 
-model Room {
-  roomId      Int       @id @default(autoincrement())
-  roomName    String
+model Facility {
+  id          Int       @id @default(autoincrement())
+  name        String
   description String?
   capacity    Int
   image       String?
@@ -26,13 +26,13 @@ model Room {
 }
 
 model Booking {
-  bookingId Int      @id @default(autoincrement())
-  userId    String
-  roomId    Int
-  date      DateTime // The date of the booking
-  startTime Int // The starting hour of the booking (e.g., 14 for 2 PM)
-  duration  Int // Duration of the booking in hours (e.g., 1 for 1 hour)
+  bookingId  Int      @id @default(autoincrement())
+  userId     String
+  facilityId Int
+  date       DateTime // The date of the booking
+  startTime  Int // The starting hour of the booking (e.g., 14 for 2 PM)
+  duration   Int // Duration of the booking in hours (e.g., 1 for 1 hour)
 
-  user User @relation(fields: [userId], references: [email])
-  room Room @relation(fields: [roomId], references: [roomId])
+  user     User     @relation(fields: [userId], references: [email])
+  facility Facility @relation(fields: [facilityId], references: [id])
 }
