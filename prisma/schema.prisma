@@ -14,8 +14,6 @@ model User {
   email           String    @unique
   apartmentNumber Int
   bookings        Booking[]
-
-  @@map("users")
 }
 
 model Room {
@@ -25,8 +23,6 @@ model Room {
   capacity    Int
   image       String?
   bookings    Booking[]
-
-  @@map("rooms")
 }
 
 model Booking {
@@ -39,6 +35,4 @@ model Booking {
 
   user User @relation(fields: [userId], references: [email])
   room Room @relation(fields: [roomId], references: [roomId])
-
-  @@map("bookings")
 }
