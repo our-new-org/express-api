@@ -16,26 +16,9 @@ export const getFacilityById = async (req: Request, res: Response) => {
 };
 
 export const createFacility = async (req: Request, res: Response) => {
-  const {
-    name,
-    description,
-    capacity,
-    image,
-    slotDuration,
-    openingTime,
-    closingTime,
-  } = req.body;
-  const facility = {
-    name,
-    description,
-    capacity,
-    image,
-    slotDuration,
-    openingTime,
-    closingTime,
-  };
+  const facilityData = req.body;
   try {
-    const newFacility = await facilityService.createFacility(facility);
+    const newFacility = await facilityService.createFacility(facilityData);
     res.json(newFacility);
   } catch (error) {
     res.status(500).send('Error creating facility');
