@@ -6,8 +6,8 @@ type Facility = {
   capacity: number;
   image: string;
   slotDuration: number;
-  openingTime: string;
-  closingTime: string;
+  openingHour: number;
+  closingHour: number;
 };
 
 const getFacilityById = async (facilityId: number) => {
