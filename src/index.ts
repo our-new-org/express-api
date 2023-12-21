@@ -1,5 +1,6 @@
 import express, { Request, Response, Application } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import facilitiesRouter from './routers/facilities';
 import usersRouter from './routers/users';
 
@@ -9,6 +10,7 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 8000;
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Express & TypeScript Server');
