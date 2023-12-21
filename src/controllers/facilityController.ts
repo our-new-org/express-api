@@ -1,10 +1,7 @@
 import { Request, Response } from 'express';
 import facilityService from '../services/facilityService';
 
-export const getFacilityByIdController = async (
-  req: Request,
-  res: Response,
-) => {
+export const getFacilityById = async (req: Request, res: Response) => {
   const { facilityId } = req.params;
   try {
     const facility = await facilityService.getFacilityById(Number(facilityId));
@@ -18,7 +15,7 @@ export const getFacilityByIdController = async (
   }
 };
 
-export const createFacilityController = async (req: Request, res: Response) => {
+export const createFacility = async (req: Request, res: Response) => {
   const {
     name,
     description,

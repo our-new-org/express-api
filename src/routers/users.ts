@@ -1,12 +1,9 @@
 import express from 'express';
-import {
-  createUserController,
-  getUserByEmailController,
-} from '../controllers/userController';
+import * as userController from '../controllers/userController';
 
 const router = express.Router();
 
-router.get('/:email', getUserByEmailController);
-router.post('/', createUserController);
+router.get('/:email', userController.getUserByEmail);
+router.post('/', userController.createUser);
 
 export default router;

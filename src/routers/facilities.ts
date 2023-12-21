@@ -1,12 +1,9 @@
 import express from 'express';
-import {
-  createFacilityController,
-  getFacilityByIdController,
-} from '../controllers/facilityController';
+import * as facilityController from '../controllers/facilityController';
 
 const router = express.Router();
 
-router.get('/:facilityId', getFacilityByIdController);
-router.post('/', createFacilityController);
+router.get('/:facilityId', facilityController.getFacilityById);
+router.post('/', facilityController.createFacility);
 
 export default router;

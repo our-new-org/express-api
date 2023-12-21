@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import userService from '../services/userService';
 
-export const getUserByEmailController = async (req: Request, res: Response) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
   const { email } = req.params;
   try {
     const user = await userService.getUserByEmail(email);
@@ -16,7 +16,7 @@ export const getUserByEmailController = async (req: Request, res: Response) => {
   }
 };
 
-export const createUserController = async (req: Request, res: Response) => {
+export const createUser = async (req: Request, res: Response) => {
   const { email } = req.body;
   try {
     const newUser = await userService.createUser(email);
