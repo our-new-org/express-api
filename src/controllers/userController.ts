@@ -5,9 +5,10 @@ export const getUserByEmail = async (req: Request, res: Response) => {
   const { email } = req.params;
   try {
     const user = await userService.getUserByEmail(email);
-    if (user) {
-      res.json(user);
+    if (!user) {
+      res.status(400).send('Error fetching user');
     }
+    res.json(user);
   } catch (error) {
     res.status(500).send('Error fetching or creating user');
   }
