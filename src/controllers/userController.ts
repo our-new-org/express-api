@@ -7,9 +7,6 @@ export const getUserByEmail = async (req: Request, res: Response) => {
     const user = await userService.getUserByEmail(email);
     if (user) {
       res.json(user);
-    } else {
-      const newUser = await userService.createUser(email);
-      res.json(newUser);
     }
   } catch (error) {
     res.status(500).send('Error fetching or creating user');
