@@ -33,9 +33,9 @@ model Booking {
   id         Int      @id @default(autoincrement())
   userId     Int
   facilityId Int
-  date       Int
-  startTime  Int
-  endTime    Int
+  date       String
+  startTime  String
+  endTime    String
   createdAt  DateTime @default(now()) // Adding createdAt field
   updatedAt  DateTime @updatedAt
 
