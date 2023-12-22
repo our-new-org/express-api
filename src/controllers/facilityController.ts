@@ -1,6 +1,19 @@
 import { Request, Response } from 'express';
 import facilityService from '../services/facilityService';
 
+export const getFacilities = async (req: Request, res: Response) => {
+  try {
+    const facilities = await facilityService.getFacilities();
+    if (facilities) {
+      res.json(facilities);
+    } else {
+      res.status(404).send('Could not fetch facilities');
+    }
+  } catch (error) {
+    res.status(500).send('Error fetching facilities');
+  }
+};
+
 export const getFacilityById = async (req: Request, res: Response) => {
   const { facilityId } = req.params;
   try {

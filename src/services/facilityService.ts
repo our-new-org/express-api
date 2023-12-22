@@ -10,6 +10,15 @@ type Facility = {
   closingHour: number;
 };
 
+const getFacilities = async () => {
+  try {
+    const facilities = await prisma.facility.findMany();
+    return facilities;
+  } catch (error) {
+    throw new Error('Error fetching facilities');
+  }
+};
+
 const getFacilityById = async (facilityId: number) => {
   try {
     const facility = await prisma.facility.findUnique({
@@ -30,4 +39,4 @@ const createFacility = async (data: Facility) => {
   }
 };
 
-export default { createFacility, getFacilityById };
+export default { createFacility, getFacilityById, getFacilities };
