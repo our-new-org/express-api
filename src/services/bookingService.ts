@@ -3,6 +3,7 @@ import prisma from '../prisma';
 type BookingData = {
   userId: number;
   facilityId: number;
+  facilityName: string;
   date: string;
   startTime: string;
   endTime: string;

@@ -30,14 +30,15 @@ model Facility {
 }
 
 model Booking {
-  id         Int      @id @default(autoincrement())
-  userId     Int
-  facilityId Int
-  date       String
-  startTime  String
-  endTime    String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  facilityId   Int
+  facilityName String
+  date         String
+  startTime    String
+  endTime      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   user     User     @relation(fields: [userId], references: [id])
   facility Facility @relation(fields: [facilityId], references: [id])
