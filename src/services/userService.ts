@@ -3,7 +3,10 @@ import generateRandomApartmentNumber from '../utils';
 
 const getUserByEmail = async (email: string) => {
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({
+      where: { email },
+      include: { bookings: true },
+    });
     return user;
   } catch (error) {
     throw new Error('Error fetching user');
@@ -17,6 +20,7 @@ const createUser = async (email: string) => {
         email,
         apartmentNumber: generateRandomApartmentNumber(),
       },
+      include: { bookings: true },
     });
     return newUser;
   } catch (error) {
