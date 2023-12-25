@@ -3,9 +3,9 @@ import prisma from '../prisma';
 type BookingData = {
   userId: number;
   facilityId: number;
-  date: Date;
-  startTime: Date;
-  endTime: Date;
+  date: string;
+  startTime: string;
+  endTime: string;
 };
 
 const createBooking = async (data: BookingData) => {

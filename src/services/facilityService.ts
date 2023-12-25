@@ -1,6 +1,6 @@
 import prisma from '../prisma';
 
-type Facility = {
+type PostFacility = {
   name: string;
   description: string;
   capacity: number;
@@ -23,6 +23,7 @@ const getFacilityById = async (facilityId: number) => {
   try {
     const facility = await prisma.facility.findUnique({
       where: { id: facilityId },
+      include: { bookings: true },
     });
     return facility;
   } catch (error) {
@@ -30,7 +31,7 @@ const getFacilityById = async (facilityId: number) => {
   }
 };
 
-const createFacility = async (data: Facility) => {
+const createFacility = async (data: PostFacility) => {
   try {
     const newFacility = await prisma.facility.create({ data });
     return newFacility;
