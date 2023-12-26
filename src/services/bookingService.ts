@@ -30,4 +30,19 @@ const getBookingByUserId = async (userId: number) => {
   }
 };
 
-export default { createBooking, getBookingByUserId };
+export const updateBooking = async (bookingId: number, data: BookingData) => {
+  try {
+    await prisma.booking.delete({ where: { id: Number(bookingId) } });
+    const newBooking = await prisma.booking.create({ data });
+    console.log(newBooking);
+    return newBooking;
+  } catch (error) {
+    console.log('error');
+    console.log('error');
+    console.log('error');
+    console.log(error);
+
+    throw new Error('Error updating booking');
+  }
+};
+export default { createBooking, getBookingByUserId, updateBooking };

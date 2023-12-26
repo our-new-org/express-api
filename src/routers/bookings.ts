@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post('/', bookingController.createBooking);
 router.get('/:userId', bookingController.getBookingByUserId);
+router.put('/:bookingId', bookingController.updateBooking);
 
 export default router;
