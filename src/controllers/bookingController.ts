@@ -37,3 +37,15 @@ export const updateBooking = async (req: Request, res: Response) => {
     res.status(500).send('Error in updaing booking whyy');
   }
 };
+
+export const cancelBooking = async (req: Request, res: Response) => {
+  const { bookingId } = req.params;
+
+  try {
+    await bookingService.cancelBooking(Number(bookingId));
+    res.json({ message: 'Booking canceled successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error canceling booking');
+  }
+};

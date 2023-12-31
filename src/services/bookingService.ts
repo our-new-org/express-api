@@ -45,4 +45,14 @@ export const updateBooking = async (bookingId: number, data: BookingData) => {
     throw new Error('Error updating booking');
   }
 };
-export default { createBooking, getBookingByUserId, updateBooking };
+
+export const cancelBooking = async (bookingId: number) => {
+  try {
+    await prisma.booking.delete({ where: { id: bookingId } });
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error canceling booking in service');
+  }
+};
+
+export default { createBooking, getBookingByUserId, updateBooking, cancelBooking };
