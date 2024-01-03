@@ -7,8 +7,17 @@ const getUserByEmail = async (email: string) => {
       where: { email },
       include: { bookings: true },
     });
-    return user;
+    if (user) return user;
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        apartmentNumber: generateRandomApartmentNumber(),
+      },
+      include: { bookings: true },
+    });
+    return newUser;
   } catch (error) {
+    console.log('did not work');
     throw new Error('Error fetching user');
   }
 };
